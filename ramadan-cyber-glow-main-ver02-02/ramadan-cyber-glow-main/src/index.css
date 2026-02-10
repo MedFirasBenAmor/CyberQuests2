@@ -1,0 +1,419 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Ramadan Night Theme - Dark Navy */
+    --background: 220 50% 8%;
+    --foreground: 40 30% 95%;
+
+    --card: 220 45% 11%;
+    --card-foreground: 40 30% 95%;
+
+    --popover: 220 45% 11%;
+    --popover-foreground: 40 30% 95%;
+
+    /* Orange - ENET'Com brand */
+    --primary: 20 100% 50%;
+    --primary-foreground: 220 50% 8%;
+
+    /* Blue secondary */
+    --secondary: 220 90% 25%;
+    --secondary-foreground: 40 30% 95%;
+
+    --muted: 220 40% 15%;
+    --muted-foreground: 220 20% 60%;
+
+    --accent: 220 60% 25%;
+    --accent-foreground: 40 30% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 30% 95%;
+
+    --border: 220 40% 18%;
+    --input: 220 40% 18%;
+    --ring: 25 95% 55%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors - Unified to brand colors */
+    --lantern-gold: 20 100% 50%;
+    --lantern-glow: 20 100% 50%;
+    --moon-glow: 220 90% 25%;
+    --star-white: 40 30% 95%;
+    --cyber-blue: 220 90% 25%;
+    --navy-deep: 220 50% 8%;
+    --navy-light: 220 90% 25%;
+  }
+
+  .dark {
+    --background: 220 50% 8%;
+    --foreground: 40 30% 95%;
+    --card: 220 45% 11%;
+    --card-foreground: 40 30% 95%;
+    --popover: 220 45% 11%;
+    --popover-foreground: 40 30% 95%;
+    --primary: 25 95% 55%;
+    --primary-foreground: 220 50% 8%;
+    --secondary: 220 70% 45%;
+    --secondary-foreground: 40 30% 95%;
+    --muted: 220 40% 15%;
+    --muted-foreground: 220 20% 60%;
+    --accent: 220 60% 25%;
+    --accent-foreground: 40 30% 95%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 40 30% 95%;
+    --border: 220 40% 18%;
+    --input: 220 40% 18%;
+    --ring: 25 95% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  /* Star twinkle animation */
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  @keyframes twinkle-slow {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+  }
+
+  /* Lantern swing animation */
+  @keyframes swing {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+
+  @keyframes swing-slow {
+    0%, 100% { transform: rotate(-2deg) translateY(0); }
+    50% { transform: rotate(2deg) translateY(-5px); }
+  }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-8px) rotate(1deg); }
+    66% { transform: translateY(-4px) rotate(-1deg); }
+  }
+
+  /* Glow pulse */
+  @keyframes glow-pulse {
+    0%, 100% { 
+      filter: drop-shadow(0 0 10px hsl(var(--lantern-glow) / 0.5));
+    }
+    50% { 
+      filter: drop-shadow(0 0 25px hsl(var(--lantern-glow) / 0.8)) 
+              drop-shadow(0 0 40px hsl(var(--lantern-glow) / 0.4));
+    }
+  }
+
+  /* Moon glow */
+  @keyframes moon-glow {
+    0%, 100% { 
+      filter: drop-shadow(0 0 20px hsl(var(--moon-glow) / 0.6));
+      opacity: 0.9;
+    }
+    50% { 
+      filter: drop-shadow(0 0 40px hsl(var(--moon-glow) / 0.9)) 
+              drop-shadow(0 0 60px hsl(var(--moon-glow) / 0.5));
+      opacity: 1;
+    }
+  }
+
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* Fade in up */
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Pattern scroll */
+  @keyframes pattern-scroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+  }
+
+  .animate-twinkle {
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  .animate-twinkle-slow {
+    animation: twinkle-slow 4s ease-in-out infinite;
+  }
+
+  .animate-swing {
+    animation: swing 3s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  .animate-swing-slow {
+    animation: swing-slow 4s ease-in-out infinite;
+    transform-origin: top center;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-moon-glow {
+    animation: moon-glow 4s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--primary) / 0.3) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  .animate-pattern {
+    animation: pattern-scroll 20s linear infinite;
+  }
+
+  /* Staggered delays */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-1000 { animation-delay: 1s; }
+  .delay-1500 { animation-delay: 1.5s; }
+  .delay-2000 { animation-delay: 2s; }
+
+  /* Islamic geometric pattern background */
+  .islamic-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='0.08'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20-20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .geometric-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23475569' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M40 0L80 40L40 80L0 40z'/%3E%3Cpath d='M40 10L70 40L40 70L10 40z'/%3E%3Cpath d='M40 20L60 40L40 60L20 40z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Gradient text - Solidified to brand colors */
+  .text-gradient-orange {
+    background: linear-gradient(135deg, hsl(20 100% 50%), hsl(20 100% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, hsl(220 90% 25%), hsl(220 90% 25%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glowing borders */
+  .glow-orange {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3),
+                0 0 40px hsl(var(--primary) / 0.1);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px hsl(var(--secondary) / 0.3),
+                0 0 40px hsl(var(--secondary) / 0.1);
+  }
+
+  /* Hover effects */
+  .hover-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.4),
+                0 0 60px hsl(var(--primary) / 0.2);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Floating particles */
+  @keyframes float-particle {
+    0%, 100% { 
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.3;
+    }
+    25% { 
+      transform: translateY(-20px) translateX(10px) scale(1.2);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: translateY(-40px) translateX(-5px) scale(1);
+      opacity: 0.5;
+    }
+    75% { 
+      transform: translateY(-20px) translateX(-10px) scale(1.3);
+      opacity: 0.9;
+    }
+  }
+
+  .animate-float-particle {
+    animation: float-particle 6s ease-in-out infinite;
+  }
+
+  /* Glowing orbs */
+  @keyframes glow-orb {
+    0%, 100% { 
+      transform: scale(1) translate(0, 0);
+      opacity: 0.3;
+    }
+    50% { 
+      transform: scale(1.2) translate(20px, -20px);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes glow-orb-reverse {
+    0%, 100% { 
+      transform: scale(1) translate(0, 0);
+      opacity: 0.2;
+    }
+    50% { 
+      transform: scale(1.3) translate(-30px, 20px);
+      opacity: 0.5;
+    }
+  }
+
+  .animate-glow-orb {
+    animation: glow-orb 8s ease-in-out infinite;
+  }
+
+  .animate-glow-orb-reverse {
+    animation: glow-orb-reverse 10s ease-in-out infinite;
+  }
+
+  /* Circuit animations */
+  @keyframes circuit-h {
+    0% { stroke-dashoffset: 1000; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  @keyframes circuit-v {
+    0% { stroke-dashoffset: 1000; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  .animate-circuit-h {
+    stroke-dasharray: 20 10;
+    animation: circuit-h 4s linear infinite;
+  }
+
+  .animate-circuit-v {
+    stroke-dasharray: 15 8;
+    animation: circuit-v 5s linear infinite;
+  }
+
+  /* Pulse nodes */
+  @keyframes pulse-node {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.5;
+      filter: drop-shadow(0 0 5px currentColor);
+    }
+    50% { 
+      transform: scale(1.5);
+      opacity: 1;
+      filter: drop-shadow(0 0 15px currentColor);
+    }
+  }
+
+  .animate-pulse-node {
+    animation: pulse-node 2s ease-in-out infinite;
+  }
+
+  /* Lantern float */
+  @keyframes lantern-float {
+    0%, 100% { 
+      transform: translateY(0) scale(1);
+      opacity: 0.4;
+    }
+    50% { 
+      transform: translateY(-15px) scale(1.1);
+      opacity: 0.7;
+    }
+  }
+
+  .animate-lantern-float {
+    animation: lantern-float 5s ease-in-out infinite;
+  }
+
+  /* Scanning line */
+  @keyframes scan-line {
+    0% { 
+      top: -5%;
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% { 
+      top: 105%;
+      opacity: 0;
+    }
+  }
+
+  .animate-scan-line {
+    animation: scan-line 6s linear infinite;
+  }
+}
