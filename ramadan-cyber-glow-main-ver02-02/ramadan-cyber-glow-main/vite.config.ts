@@ -13,7 +13,8 @@ export default defineConfig(({ mode }) => ({
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
-  resolve: {
+ base: "/CyberQuests2/",
+ resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
